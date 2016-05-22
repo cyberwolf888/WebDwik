@@ -127,7 +127,7 @@ $data=mysql_fetch_array($sql);
 
 <div class="form-group">
 <label class="col-sm-2 control-label">History</label>
-<div class="col-sm-10"><textarea name="komen" class="form-control" ><?php echo"$data[15]"; ?></textarea>
+<div class="col-sm-10"><textarea name="komen" class="form-control" ><?php echo"$data[16]"; ?></textarea>
 </div></div>
                     
 <div class="form-group">
@@ -153,7 +153,7 @@ $data=mysql_fetch_array($sql);
 </div></div>
 <div class="form-group">
 <label class="col-sm-2 control-label">Tanggal Jatuh Tempo</label>
-<div class="col-sm-10"><input type="text" name="tgl_jth_tempo" id="datepicker2" value="<?php echo"$data[14]"; ?>" class="form-control">
+<div class="col-sm-10"><input type="text" name="tgl_jth_tempo" id="datepicker2" value="<?php echo"$data[15]"; ?>" class="form-control">
 </div></div>
 
 <div class="form-group">
@@ -163,14 +163,20 @@ $data=mysql_fetch_array($sql);
 ?>
 </div></div>
 <div class="form-group">
+<label class="col-sm-2 control-label">Telah Bayar </label>
+<div class="col-sm-10"><input type="text" name="telah_bayar" value="<?php echo"$data[13]"; ?>"class="form-control">
+<?php if(!empty($_GET['pokok_hutang'])){echo"<font color='red'>Data harus berupa angka !!!</font>";}
+?>
+</div></div>
+<div class="form-group">
 <label class="col-sm-2 control-label">TOP</label>
-<div class="col-sm-10"><input type="text" name="top" class="form-control" style="width:50%" value="<?php echo"$data[16]"; ?>">
+<div class="col-sm-10"><input type="text" name="top" class="form-control" style="width:50%" value="<?php echo"$data[17]"; ?>">
 <?php if(!empty($_GET['top'])){echo"<font color='red'>Data harus berupa angka !!!</font>";}
 ?>
 </div></div>
 <div class="form-group">
 <label class="col-sm-2 control-label">Angsuran</label>
-<div class="col-sm-10"><input type="text" name="angsuran" value="<?php echo"$data[13]"; ?>"class="form-control">
+<div class="col-sm-10"><input type="text" name="angsuran" value="<?php echo"$data[14]"; ?>"class="form-control">
 <?php if(!empty($_GET['angsuran'])){echo"<font color='red'>Data harus berupa angka !!!</font>";}
 ?>
 </div></div>

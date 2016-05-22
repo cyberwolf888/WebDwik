@@ -25,6 +25,10 @@
         <th>No</th>
         <th>Customer</th>
         <th>Laporan</th>
+        <th>Pokok Hutang</th>
+        <th>Telah Bayar</th>
+        <th>Sisa Hutang</th>
+        <th>Angsuran Ke</th>
         <th>Status</th>
         <th>Waktu</th>
 	</tr>
@@ -40,6 +44,10 @@ while($data=mysql_fetch_array($sql)){
     	<td><?php echo"$no"; ?></td>
         <td><?php echo"$data2[1]"; ?></td>
         <td><?php echo"$data[2]"; ?></td>
+        <td><?php echo"Rp. ".number_format($data2[12],0,',','.'); ?></td>
+        <td><?php echo"Rp. ".number_format($data2[13],0,',','.'); ?></td>
+        <td><?php echo"Rp. ".number_format($data2[12]-$data2[13],0,',','.'); ?></td>
+        <td><?php echo"$data[5]"; ?></td>
         <?php
         	if($data[4]==0){
 				$status="Belum Bayar";

@@ -193,6 +193,13 @@ else if(!empty($_GET['pokok_hutang'])){echo"<font color='red'>Data harus berupa 
 ?>
 </div></div>
 <div class="form-group">
+<label class="col-sm-2 control-label">Telah Bayar </label>
+<div class="col-sm-10"><input type="text" name="telah_bayar" class="form-control" placeholder="telah_bayar"value="<?php echo"$_GET[telah_bayar]"; ?>">
+<?php if(empty($_GET['telah_bayar'])){echo"<font color='red'>Data masih kosong !!!</font>";}
+else if(!empty($_GET['telah_bayar'])){echo"<font color='red'>Data harus berupa angka !!!</font>";}
+?>
+</div></div>
+<div class="form-group">
 <label class="col-sm-2 control-label">TOP </label>
 <div class="col-sm-10"><input type="text" name="top" class="form-control" style="width:50%" value="<?php echo"$_GET[top]"; ?>">
 <?php if(empty($_GET['top'])){echo"<font color='red'>Data masih kosong !!!</font>";} ?>
@@ -291,6 +298,10 @@ else if(!empty($_GET['angsuran'])){echo"<font color='red'>Data harus berupa angk
 <div class="form-group">
 <label class="col-sm-2 control-label">Pokok Hutang </label>
 <div class="col-sm-10"><input type="text" name="pokok_hutang" class="form-control" placeholder="Pokok hutang">
+</div></div>
+<div class="form-group">
+<label class="col-sm-2 control-label">Telah Bayar </label>
+<div class="col-sm-10"><input type="text" name="telah_bayar" class="form-control" placeholder="Telah Bayar">
 </div></div>
 <div class="form-group">
 <label class="col-sm-2 control-label">TOP </label>

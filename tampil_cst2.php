@@ -20,6 +20,8 @@
 <th>No</th>
     <th>No Kontrak</th>
     <th>Nama</th>
+    <th>Pokok Hutang</th>
+    <th>Telah Bayar</th>
     <th>Tanggal Jatuh Tempo</th>
     <th>Aksi</th>
 </tr>
@@ -52,7 +54,9 @@ while(@$data=mysql_fetch_array($sql)){
 <td><?php echo"$no" ?></td>
     <td><?php echo"$data[0]"; ?></td>
     <td><?php echo"$data[1]"; ?></td>
-    <td><?php echo"$data[14]"; ?></td>
+    <td><?php echo"Rp. ".number_format($data[12],0,',','.');; ?></td>
+    <td><?php echo"Rp. ".number_format($data[13],0,',','.'); ?></td>
+    <td><?php echo"$data[15]"; ?></td>
     <td><a href="#popup" onclick="FungsiData('<?php echo $data[0]; ?>');">Detail</a><br>
     <a href="index.php?page=form_update_cst.php&id=<?php echo"$data[0]"; ?>">update</a><br />
     <a href="delete_cst.php?id=<?php echo"$data[0]"; ?>"onclick="return confirm('apakah anda akan menghapus <?php echo"$data[0], $data[1]"; ?>')">delete</a></td>
@@ -76,10 +80,11 @@ while(@$data=mysql_fetch_array($sql)){
         Warganegara           : <?php echo $data[8]; ?><br />
         Tempat penagihan      : <?php echo "$data[9], $data_daerah_tagih[2], $data_daerah_tagih[1], $data_daerah_tagih[3]" ;?><br />
         No. Tlp               : <?php echo $data[11]; ?><br />
-        Tanggal jatuh tempo   : <?php echo $data[14]; ?><br />
+        Tanggal jatuh tempo   : <?php echo $data[15]; ?><br />
 		Pokok Hutang          : <?php echo $data[12]; ?><br />
-		TOP			          : <?php echo $data[16]; ?><br />
-		Angsuran              : <?php echo $data[13]; ?><br />
+        Telah Bayar           : <?php echo $data[13]; ?><br />
+		TOP			          : <?php echo $data[17]; ?><br />
+		Angsuran              : <?php echo $data[14]; ?><br />
         
         </p>
         </span>
