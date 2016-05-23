@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: May 08, 2016 at 11:33 AM
--- Server version: 5.1.41
--- PHP Version: 5.3.1
+-- Host: 127.0.0.1
+-- Generation Time: 22 Mei 2016 pada 07.35
+-- Versi Server: 5.6.16
+-- PHP Version: 5.5.11
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -22,7 +23,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE IF NOT EXISTS `admin` (
@@ -33,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`id_admin`, `nm_admin`, `pass`) VALUES
@@ -42,7 +43,7 @@ INSERT INTO `admin` (`id_admin`, `nm_admin`, `pass`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `beban`
+-- Struktur dari tabel `beban`
 --
 
 CREATE TABLE IF NOT EXISTS `beban` (
@@ -52,10 +53,10 @@ CREATE TABLE IF NOT EXISTS `beban` (
   `bulan` int(50) NOT NULL,
   `tahun` int(11) NOT NULL,
   PRIMARY KEY (`no_beban`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=53 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
 
 --
--- Dumping data for table `beban`
+-- Dumping data untuk tabel `beban`
 --
 
 INSERT INTO `beban` (`no_beban`, `id_kolektor`, `kd_daerah`, `bulan`, `tahun`) VALUES
@@ -65,7 +66,7 @@ INSERT INTO `beban` (`no_beban`, `id_kolektor`, `kd_daerah`, `bulan`, `tahun`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cst`
+-- Struktur dari tabel `cst`
 --
 
 CREATE TABLE IF NOT EXISTS `cst` (
@@ -82,6 +83,7 @@ CREATE TABLE IF NOT EXISTS `cst` (
   `daerah_tagih` varchar(100) NOT NULL,
   `tlp` varchar(100) NOT NULL,
   `pokok_hutang` varchar(100) NOT NULL,
+  `telah_bayar` varchar(100) NOT NULL,
   `angsuran` float NOT NULL,
   `tgl_jth_tempo` varchar(100) NOT NULL,
   `komen` text NOT NULL,
@@ -90,16 +92,17 @@ CREATE TABLE IF NOT EXISTS `cst` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `cst`
+-- Dumping data untuk tabel `cst`
 --
 
-INSERT INTO `cst` (`no_kontrak`, `nama`, `tempat_lahir`, `tgl_lahir`, `alamat`, `kd_daerah`, `agama`, `status`, `warganegara`, `tmpat_tagih`, `daerah_tagih`, `tlp`, `pokok_hutang`, `angsuran`, `tgl_jth_tempo`, `komen`, `top`) VALUES
-('701000028374', 'krisna narendra', 'Denpasar', '04/01/2015', 'Jl. Gn Agung gg. IV l.10 No.2', '8642', 'hindu', 'menikah', 'wni', 'Jl. Gn Agung gg. IV l.10 No.2', '8642', '09267828939', '12500000', 500000, '04/01/2016', 'Cust RO1 FIF', 12);
+INSERT INTO `cst` (`no_kontrak`, `nama`, `tempat_lahir`, `tgl_lahir`, `alamat`, `kd_daerah`, `agama`, `status`, `warganegara`, `tmpat_tagih`, `daerah_tagih`, `tlp`, `pokok_hutang`, `telah_bayar`, `angsuran`, `tgl_jth_tempo`, `komen`, `top`) VALUES
+('701000028374', 'krisna narendra', 'Denpasar', '04/01/2015', 'Jl. Gn Agung gg. IV l.10 No.2', '8642', 'hindu', 'menikah', 'wni', 'Jl. Gn Agung gg. IV l.10 No.2', '8642', '09267828939', '12500000', '8500000', 500000, '04/01/2016', 'Cust RO1 FIF', 12),
+('701000028879', 'I Nyoman Sugita', 'Denpasar', '11/18/2015', 'Jl. Gn Agung gg. IV l.10 No.2', '8648', 'hindu', 'menikah', 'wni', 'Jl. Gn Agung gg. IV l.10 No.2', '8654', '08736373736', '8000000', '3000000', 300000, '06/01/2016', 'Cust RO2 FIF', 12);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `daerah`
+-- Struktur dari tabel `daerah`
 --
 
 CREATE TABLE IF NOT EXISTS `daerah` (
@@ -111,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `daerah` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8662 ;
 
 --
--- Dumping data for table `daerah`
+-- Dumping data untuk tabel `daerah`
 --
 
 INSERT INTO `daerah` (`kd_daerah`, `kecamatan`, `desa`, `prov`) VALUES
@@ -139,7 +142,7 @@ INSERT INTO `daerah` (`kd_daerah`, `kecamatan`, `desa`, `prov`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kolektor`
+-- Struktur dari tabel `kolektor`
 --
 
 CREATE TABLE IF NOT EXISTS `kolektor` (
@@ -150,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `kolektor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kolektor`
+-- Dumping data untuk tabel `kolektor`
 --
 
 INSERT INTO `kolektor` (`id_kolektor`, `nama`, `pass`) VALUES
@@ -160,25 +163,26 @@ INSERT INTO `kolektor` (`id_kolektor`, `nama`, `pass`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `laporan`
+-- Struktur dari tabel `laporan`
 --
 
 CREATE TABLE IF NOT EXISTS `laporan` (
-  `id_laporan` int(11) NOT NULL AUTO_INCREMENT,
+  `id_laporan` varchar(100) NOT NULL,
   `no_kontrak` bigint(20) NOT NULL,
   `laporan` text NOT NULL,
   `waktu` datetime NOT NULL,
   `status` varchar(100) NOT NULL,
+  `angsuran` int(2) NOT NULL,
   `id_kolektor` varchar(100) NOT NULL,
   PRIMARY KEY (`id_laporan`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `laporan`
+-- Dumping data untuk tabel `laporan`
 --
 
-INSERT INTO `laporan` (`id_laporan`, `no_kontrak`, `laporan`, `waktu`, `status`, `id_kolektor`) VALUES
-(3, 701000028374, 'diinputkan admin', '2016-04-20 21:01:42', '1', 'admin');
+INSERT INTO `laporan` (`id_laporan`, `no_kontrak`, `laporan`, `waktu`, `status`, `angsuran`, `id_kolektor`) VALUES
+('3', 701000028374, 'diinputkan admin', '2016-04-20 21:01:42', '1', 6, 'admin');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
