@@ -46,6 +46,12 @@ while($data=mysql_fetch_array($sql)){
 <option value="2">lunas</option>
 </select></div></div>
 
+<div class="form-group">
+<label class="col-sm-2 control-label">Angsuran ke</label>
+<div class="col-sm-10">
+    <input type="number" min="1" max="100" name="angsuran" class="form-control" required>
+</select></div></div>
+
 <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>
