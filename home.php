@@ -37,28 +37,28 @@ include "koneksi.php";
 $sql=mysql_query("select * from laporan ORDER BY waktu DESC");
 $no=1;
 while($data=mysql_fetch_array($sql)){
-	$sql2=mysql_query("select * from cst where no_kontrak=$data[1]");
+	$sql2=mysql_query("select * from cst where id_cst=$data[id_cst]");
 	$data2=@mysql_fetch_array($sql2);
 ?>
     <tr>
     	<td><?php echo"$no"; ?></td>
-        <td><?php echo"$data2[1]"; ?></td>
+        <td><?php echo"$data2[nama]"; ?></td>
         <td><?php echo"$data[2]"; ?></td>
-        <td><?php echo"Rp. ".number_format($data2[12],0,',','.'); ?></td>
-        <td><?php echo"Rp. ".number_format($data2[13],0,',','.'); ?></td>
-        <td><?php echo"Rp. ".number_format($data2[12]-$data2[13],0,',','.'); ?></td>
+        <td><?php echo"Rp. ".number_format($data2['pokok_hutang'],0,',','.'); ?></td>
+        <td><?php echo"Rp. ".number_format($data2['telah_bayar'],0,',','.'); ?></td>
+        <td><?php echo"Rp. ".number_format($data2['pokok_hutang']-$data2['telah_bayar'],0,',','.'); ?></td>
         <td><?php echo"$data[5]"; ?></td>
         <?php
-        	if($data[4]==0){
+        	if($data['status']==0){
 				$status="Belum Bayar";
-			}else if($data[4]==1){
+			}else if($data['status']==1){
 				$status="Bayar";
-			}else if($data[4]==2){
+			}else if($data['status']==2){
 				$status="Lunas";
 			}
 		?>
         <td><?php echo"$status"; ?></td>
-        <td><?php echo"$data[3]"; ?></td>
+        <td><?php echo"$data[waktu]"; ?></td>
     </tr>
 <?php
 $no++;

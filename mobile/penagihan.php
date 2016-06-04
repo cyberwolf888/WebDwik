@@ -4,12 +4,13 @@ include_once ("../koneksi.php");
 
 if(isset($_POST['id_kolektor'])){
     $id_kolektor = $_POST['id_kolektor'];
-    $no_kontrak = $_POST['no_kontrak'];
+    $id_cst = $_POST['id_cst'];
     $bayar = $_POST['bayar'];
     $angusran = $_POST['angsuran'];
+    $denda = $_POST['denda'];
     $response = array("status"=>1);
     $kolektor = mysql_fetch_array(mysql_query("SELECT * FROM kolektor WHERE id_kolektor = '$id_kolektor'"));
-    $customer = mysql_fetch_array(mysql_query("SELECT * FROM cst WHERE no_kontrak = '$no_kontrak'"));
+    $customer = mysql_fetch_array(mysql_query("SELECT * FROM cst WHERE id_cst = '$id_cst'"));
 
     $pokok_hutang = $customer['pokok_hutang'];
     $telah_bayar = $customer['telah_bayar'];
@@ -23,10 +24,10 @@ if(isset($_POST['id_kolektor'])){
     }else{
         $status = 1;
     }
-    $query = mysql_query("INSERT INTO laporan (no_kontrak,laporan,waktu,status,angsuran,id_kolektor) VALUES ('$no_kontrak', '$laporan', '$waktu', '$status', '$angusran', '$id_kolektor')");
+    $query = mysql_query("INSERT INTO laporan (id_cst,laporan,waktu,status,angsuran,id_kolektor,denda) VALUES ('$id_cst', '$laporan', '$waktu', '$status', '$angusran', '$id_kolektor', '$denda')");
     if($query){
         $telah_bayar = $telah_bayar+$bayar;
-        if(!mysql_query("UPDATE cst SET telah_bayar='$telah_bayar' WHERE no_kontrak='$no_kontrak'")){
+        if(!mysql_query("UPDATE cst SET telah_bayar='$telah_bayar' WHERE id_cst='$id_cst'")){
             $response['status'] = 0;
         }
     }else{

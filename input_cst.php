@@ -39,6 +39,7 @@ header("location:index.php?page=form_input_cst.php&&nkontrak=$_POST[nkontrak]&&n
 
 else {
 
-mysql_query("insert into cst values ('$_POST[nkontrak]', '$_POST[nama]', '$_POST[tmp_lahir]', '$_POST[tgl_lahir]', '$_POST[almt]', '$_POST[daerah]', '$_POST[agama]', '$_POST[status]', '$_POST[warganegara]', '$_POST[tmp_tagih]','$_POST[daerah_tagih]', '$_POST[tlp]', '$_POST[pokok_hutang]', '$_POST[telah_bayar]', '$_POST[angsuran]','$_POST[tgl_jth_tempo]','$_POST[komen]','$_POST[top]')");
+mysql_query("insert into cst values ('', '$_POST[nkontrak]', '$_POST[nama]', '$_POST[tmp_lahir]', '$_POST[tgl_lahir]', '$_POST[almt]', '$_POST[daerah]', '$_POST[agama]', '$_POST[status]', '$_POST[warganegara]', '$_POST[tmp_tagih]','$_POST[daerah_tagih]', '$_POST[tlp]', '$_POST[pokok_hutang]', '$_POST[telah_bayar]', '$_POST[angsuran]','$_POST[tgl_jth_tempo]','$_POST[komen]','$_POST[top]')");
+//echo mysql_error();
 header("location:index.php?page=tampil_cst2.php");
 }?>

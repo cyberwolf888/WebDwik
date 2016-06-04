@@ -27,11 +27,11 @@
 <label class="col-sm-2 control-label">Customer</label>
 <div class="col-sm-10"><select name="cst">
 <?php
-$sql=mysql_query("select * from cst");
+$sql=mysql_query("select c.*,l.status from cst as c LEFT JOIN laporan AS l ON l.id_cst = c.id_cst WHERE isnull(l.status)");
 
 while($data=mysql_fetch_array($sql)){
 ?>
-<option value="<?php echo"$data[0]" ?>"><?php echo"$data[0] | $data[1]"; ?></option>
+<option value="<?php echo"$data[id_cst]" ?>"><?php echo"$data[no_kontrak] | $data[nama]"; ?></option>
 <?php	
 	}
 ?>

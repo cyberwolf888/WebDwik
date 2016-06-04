@@ -48,7 +48,7 @@ if(!empty($_GET['modul'])=='cari')
 {
 	if(empty($_GET['daerah'])){
 		if(empty($_POST['cari'])){
-			$sql=mysql_query("select * from cst");
+			$sql=mysql_query("select c.*,l.status from cst as c LEFT JOIN laporan AS l ON l.id_cst = c.id_cst WHERE isnull(l.status)");
 		}
 		else{
 		$sql=mysql_query("select * from cst where daerah_tagih=$_POST[cari]");
@@ -59,7 +59,7 @@ if(!empty($_GET['modul'])=='cari')
 	}
 }
 else{
-$sql=mysql_query("select * from cst");
+$sql=mysql_query("select c.*,l.status from cst as c LEFT JOIN laporan AS l ON l.id_cst = c.id_cst WHERE isnull(l.status)");
 }
 $no=1;
 while(@$data=mysql_fetch_array($sql)){

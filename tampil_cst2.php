@@ -30,7 +30,7 @@ if(!empty($_GET['modul'])=='cari')
 {
 	if(empty($_GET['daerah'])){
 		if(empty($_POST['cari'])){
-			$sql=mysql_query("select * from cst");
+			$sql=mysql_query("select c.*,l.status from cst as c LEFT JOIN laporan AS l ON l.id_cst = c.id_cst WHERE isnull(l.status)");
 		}
 		else{
 		$sql=mysql_query("select * from cst where daerah_tagih=$_POST[cari]");
@@ -41,25 +41,25 @@ if(!empty($_GET['modul'])=='cari')
 	}
 }
 else{
-$sql=mysql_query("select * from cst");
+$sql=mysql_query("select c.*,l.status from cst as c LEFT JOIN laporan AS l ON l.id_cst = c.id_cst WHERE isnull(l.status)");
 }
 $no=1;
 while(@$data=mysql_fetch_array($sql)){
-	$sql_daerah=mysql_query("select * from daerah where kd_daerah='$data[5]'");
+	$sql_daerah=mysql_query("select * from daerah where kd_daerah='".$data['kd_daerah']."'");
 	$data_daerah=mysql_fetch_array($sql_daerah);
-	$sql_daerah_tagih=mysql_query("select * from daerah where kd_daerah='$data[10]'");
+	$sql_daerah_tagih=mysql_query("select * from daerah where kd_daerah='".$data['daerah_tagih']."'");
 	$data_daerah_tagih=mysql_fetch_array($sql_daerah_tagih);
 ?>
 <tr>
 <td><?php echo"$no" ?></td>
-    <td><?php echo"$data[0]"; ?></td>
-    <td><?php echo"$data[1]"; ?></td>
-    <td><?php echo"Rp. ".number_format($data[12],0,',','.');; ?></td>
-    <td><?php echo"Rp. ".number_format($data[13],0,',','.'); ?></td>
-    <td><?php echo"$data[15]"; ?></td>
+    <td><?php echo $data['no_kontrak']; ?></td>
+    <td><?php echo $data['nama']; ?></td>
+    <td><?php echo"Rp. ".number_format($data['pokok_hutang'],0,',','.');; ?></td>
+    <td><?php echo"Rp. ".number_format($data['telah_bayar'],0,',','.'); ?></td>
+    <td><?php echo $data['tgl_jth_tempo']; ?></td>
     <td><a href="#popup" onclick="FungsiData('<?php echo $data[0]; ?>');">Detail</a><br>
     <a href="index.php?page=form_update_cst.php&id=<?php echo"$data[0]"; ?>">update</a><br />
-    <a href="delete_cst.php?id=<?php echo"$data[0]"; ?>"onclick="return confirm('apakah anda akan menghapus <?php echo"$data[0], $data[1]"; ?>')">delete</a></td>
+    <a href="delete_cst.php?id=<?php echo"$data[0]"; ?>"onclick="return confirm('apakah anda akan menghapus <?php echo $data['no_kontrak'] ?>')">delete</a></td>
 </tr>
 
 <div id="popup">
@@ -72,19 +72,19 @@ while(@$data=mysql_fetch_array($sql)){
 		</div>
         <span id="data<?php echo $data[0]; ?>" style="display:none;">
      	<p align="left"> 
-        Nama                  : <?php echo $data[1]; ?><br />
-        Tempat, Tanggal lahir : <?php echo "$data[2], $data[3]"; ?><br />
-        Alamat                : <?php echo "$data[4], $data_daerah[2], $data_daerah[1], $data_daerah[3]" ;?><br />
-        Agama                 : <?php echo $data[6] ?><br />
-        Status                : <?php echo $data[7]; ?><br />
-        Warganegara           : <?php echo $data[8]; ?><br />
-        Tempat penagihan      : <?php echo "$data[9], $data_daerah_tagih[2], $data_daerah_tagih[1], $data_daerah_tagih[3]" ;?><br />
-        No. Tlp               : <?php echo $data[11]; ?><br />
-        Tanggal jatuh tempo   : <?php echo $data[15]; ?><br />
-		Pokok Hutang          : <?php echo $data[12]; ?><br />
-        Telah Bayar           : <?php echo $data[13]; ?><br />
-		TOP			          : <?php echo $data[17]; ?><br />
-		Angsuran              : <?php echo $data[14]; ?><br />
+        Nama                  : <?php echo $data['nama']; ?><br />
+        Tempat, Tanggal lahir : <?php echo $data['tempat_lahir'].", ".$data['tgl_lahir']; ?><br />
+        Alamat                : <?php echo $data['alamat'].", ".$data_daerah['desa'].", ".$data_daerah['kecamatan'].", ".$data_daerah['prov'] ;?><br />
+        Agama                 : <?php echo $data['agama'] ?><br />
+        Status                : <?php echo $data['status']; ?><br />
+        Warganegara           : <?php echo $data['warganegara']; ?><br />
+        Tempat penagihan      : <?php echo $data['tmpat_tagih'].", ".$data_daerah['desa'].", ".$data_daerah['kecamatan'].", ".$data_daerah['prov']  ;?><br />
+        No. Tlp               : <?php echo $data['tlp']; ?><br />
+        Tanggal jatuh tempo   : <?php echo $data['tgl_jth_tempo']; ?><br />
+		Pokok Hutang          : <?php echo $data['pokok_hutang']; ?><br />
+        Telah Bayar           : <?php echo $data['telah_bayar']; ?><br />
+		TOP			          : <?php echo $data['top']; ?><br />
+		Angsuran              : <?php echo $data['angsuran']; ?><br />
         
         </p>
         </span>
