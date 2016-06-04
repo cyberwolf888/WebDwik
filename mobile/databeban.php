@@ -12,7 +12,7 @@ if(isset($_POST['id_kolektor'])){
 
     if(count($kd_daerah)>0){
         $customer = array();
-        $sql = "SELECT c.*,l.status AS sts_laporan FROM cst AS c LEFT JOIN laporan AS l ON l.no_kontrak = c.no_kontrak WHERE ";
+        $sql = "SELECT c.*,l.status AS sts_laporan FROM cst AS c LEFT JOIN laporan AS l ON l.id_cst = c.id_cst WHERE ";
         foreach ($kd_daerah as $data){
             $sql.=" c.kd_daerah='$data' OR";
         }
